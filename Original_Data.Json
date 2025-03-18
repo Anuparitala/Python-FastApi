@@ -1,0 +1,85 @@
+{
+    "system": {
+      "name": "EnterpriseServerCluster",
+      "overall_health": "Degraded",
+      "last_updated": "2025-03-16T14:30:00Z",
+      "subsystems": [
+        {
+          "name": "DatabaseCluster",
+          "health": "Critical",
+          "components": [
+            {
+              "id": "DB01",
+              "type": "DatabaseNode",
+              "status": "Down",
+              "cpu_usage": 0,
+              "memory_usage": 0,
+              "disk_usage": "85%",
+              "temperature": "N/A",
+              "dependencies": ["DB02", "DB03"]
+            },
+            {
+              "id": "DB03",
+              "type": "DatabaseNode",
+              "status": "Down",
+              "cpu_usage": 0,
+              "memory_usage": 0,
+              "disk_usage": "85%",
+              "temperature": "N/A",
+              "dependencies": ["DB02"]
+            },
+            {
+              "id": "DB02",
+              "type": "DatabaseNode",
+              "status": "Operational",
+              "cpu_usage": 67,
+              "memory_usage": 78,
+              "disk_usage": "60%",
+              "temperature": "55C",
+              "dependencies": ["DB01", "DB03"]
+            }
+          ]
+        },
+        {
+          "name": "WebServerCluster",
+          "health": "Warning",
+          "components": [
+            {
+              "id": "WEB01",
+              "type": "WebServer",
+              "status": "Operational",
+              "cpu_usage": 45,
+              "memory_usage": 65,
+              "temperature": "50C",
+              "dependencies": ["LB01", "DB01"]
+            },
+            {
+              "id": "WEB02",
+              "type": "WebServer",
+              "status": "Operational",
+              "cpu_usage": 50,
+              "memory_usage": 70,
+              "temperature": "52C",
+              "dependencies": ["LB01"]
+            }
+          ]
+        },
+        {
+          "name": "LoadBalancer",
+          "health": "Healthy",
+          "components": [
+            {
+              "id": "LB01",
+              "type": "LoadBalancer",
+              "status": "Operational",
+              "cpu_usage": 30,
+              "memory_usage": 40,
+              "temperature": "48C",
+              "dependencies": ["WEB01", "WEB02"]
+            }
+          ]
+        }
+      ]
+    }
+  }
+  
