@@ -1,13 +1,10 @@
-import json
+import json,asyncio,aiohttp,os
 import networkx as nx
-import asyncio
-import aiohttp
 import pandas as pd
 import matplotlib.pyplot as plt
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from io import BytesIO
 from fastapi.responses import PlainTextResponse, FileResponse
-import os
 from tabulate import tabulate
 
 # FastAPI app
